@@ -25,7 +25,7 @@
 			<li><a href="/contact.jsp" class="navbar-brand"> CONTACT </a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a routerLink="/logout" class="navbar-brand"> LOGOUT </a></li>
+			<li><a href="<%=request.getContextPath()%>/logoutServlet" class="navbar-brand"> LOGOUT </a></li>
 		</ul>
 		</nav>
 		<!-- </header> -->
@@ -36,7 +36,7 @@
 			</div>
 			<div class="col-sm-8">
 				<div class="jumbotron">
-					<h2>${username}<small>${userInfo}</small>
+					<h2>${username}<small>---> This is the user. </small>
 					</h2>
 
 					Description .....
