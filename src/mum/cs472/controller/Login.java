@@ -31,16 +31,13 @@ public class Login extends HttpServlet {
 //		System.exit(0);
 		if(user.getUsername().equals(username) && user.getPassword().equals(password)){
 			session.setAttribute("username", username);
-			request.setAttribute("userInfo", "Successfully Logged in...");
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/profile.jsp");
 			dispatcher.forward(request, response);
 		}else{
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-			request.setAttribute("error", true);
-			dispatcher.forward(request, response);
-		
+		request.setAttribute("error", true);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+		dispatcher.forward(request, response);
 		}
 	}
 
