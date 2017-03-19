@@ -1,0 +1,41 @@
+package mum.cs472.util;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBUtil {
+	 private static Connection conn;
+	 
+	    public static Connection getConnection() {
+	    	 try {
+	        	 Class.forName("com.mysql.jdbc.Driver");
+	            // connect way #1
+	            String url = "jdbc:mysql://localhost:3306/carpool?useSSL=false";
+	            String user = "cs544";
+	            String password = "201511";
+	 
+	            conn = DriverManager.getConnection(url, user, password);
+	            if (conn != null) {
+	                System.out.println("Connected to the database test");
+	            }
+	 
+	           
+	        } catch (SQLException | ClassNotFoundException ex) {
+	            System.out.println("An error occurred. Maybe user/password is invalid");
+	            ex.printStackTrace();
+	        }
+			return conn;
+	    }
+	    
+	    public static void closeConnection(Connection toBeClosed) {
+	        if( toBeClosed == null )
+	            return;
+	        try {
+	            toBeClosed.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
+}

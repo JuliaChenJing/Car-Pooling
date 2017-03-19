@@ -12,10 +12,10 @@
 <body>
 
 	<div class="container">
-		<!-- <header> -->
+
 		<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a routerLink="/" class="navbar-brand"> Car Pool </a>
+			<a href="/" class="navbar-brand"> Car Pool </a>
 
 
 		</div>
@@ -25,10 +25,12 @@
 			<li><a href="/contact.jsp" class="navbar-brand"> CONTACT </a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="<%=request.getContextPath()%>/logoutServlet" class="navbar-brand"> LOGOUT </a></li>
+			<li>${username}</li>
+			<li><a href="<%=request.getContextPath()%>/logoutServlet"
+				class="navbar-brand"> LOGOUT </a></li>
 		</ul>
 		</nav>
-		<!-- </header> -->
+
 
 		<div class="col-sm-12">
 			<div class="col-sm-4">
@@ -45,6 +47,6 @@
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

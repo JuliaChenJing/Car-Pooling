@@ -10,35 +10,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mum.cs472.model.User;
+import mum.cs472.dao.LoginDao;
+import mum.cs472.dao.LoginDaoImplementation;
+import mum.cs472.dao.UserDao;
+import mum.cs472.dao.UserDaoImplementation;
 
 @WebServlet("/loginServlet")
 public class Login extends HttpServlet {
+	private LoginDao loginDao;
+	private UserDao userDao;
+
+	public Login() {
+		loginDao = new LoginDaoImplementation();
+		userDao = new UserDaoImplementation();
+	}
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("userId");
-		String password = request.getParameter("passId");
-		
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
 		HttpSession session = request.getSession();
-		// set default user and password
-		User user = new User("test", "123");
-		System.out.println(user.getUsername()+" === "+username);
-		System.out.println(user.getPassword()+" === "+password);
-//		System.exit(0);
-		if(user.getUsername().equals(username) && user.getPassword().equals(password)){
-			session.setAttribute("username", username);
-			
+		if (loginDao.validate(email, password)) {
+			String fullname = userDao.findFullNameByEmail(email);
+			session.setAttribute("username", fullname);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/profile.jsp");
 			dispatcher.forward(request, response);
-		}else{
-		request.setAttribute("error", true);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-		dispatcher.forward(request, response);
+		} else {
+			request.setAttribute("error", true);
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");
+			dispatcher.include(request, response);
 		}
+
 	}
 
 }
