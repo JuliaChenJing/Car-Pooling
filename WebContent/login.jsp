@@ -13,7 +13,7 @@
 	margin-top: 15%;
 }
 
-#link-signup{
+#link-signup {
 	text-align: center;
 	font-size: 24px;
 	margin-left: 35%;
@@ -61,20 +61,21 @@
 
 					</div>
 				</div>
-				<span id="link-signup"> <a href="SignUpServlet">Create account</a>
-		</span>
+				<span id="link-signup"> <a href="SignUpServlet">Create
+						account</a>
+				</span>
 			</div>
-			
+
 		</div>
-		
+
 	</div>
 	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $(document).ready(function(){
-	  $("#errorBody").effect("shake");
-  });
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#errorBody").effect("shake");
+		});
 	</script>
-	
+
 </body>
 </html>
