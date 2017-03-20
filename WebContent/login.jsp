@@ -31,7 +31,7 @@
 
 					</div>
 					<div class="panel-body">
-						<form action="loginServlet" method="post" class="form-horizontal">
+						<form action="login" method="post" class="form-horizontal">
 							<c:if test="${error}">
 								<div class="alert alert-danger" id="errorBody">
 									<p>Invalid username and password</p>

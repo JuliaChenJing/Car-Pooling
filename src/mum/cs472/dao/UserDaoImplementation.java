@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import com.mysql.jdbc.PreparedStatement;
 
 import mum.cs472.model.User;
@@ -88,6 +87,37 @@ public class UserDaoImplementation implements UserDao {
 			e.printStackTrace();
 		}
 		return fullname;
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		User user = new User();
+		try {
+			String query = "SELECT * FROM users where email = ?";
+			preparedStatement = (PreparedStatement) conn.prepareStatement(query);
+			preparedStatement.setString(1, email);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+                user.setUserId(resultSet.getInt("userid"));
+                user.setFullname(resultSet.getString("fullname"));
+                user.setGender(resultSet.getInt("gender"));
+                user.setState(resultSet.getString("state"));
+                user.setCity(resultSet.getString("city"));
+                user.setStreet(resultSet.getString("street"));
+                user.setZipcode(resultSet.getInt("zipcode"));
+                user.setBirthyear(resultSet.getInt("birthyear"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setDateCreated(resultSet.getDate("datecreated"));
+                user.setDateUpdated(resultSet.getDate("dateupdated"));
+         
+            }
+			preparedStatement.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 }

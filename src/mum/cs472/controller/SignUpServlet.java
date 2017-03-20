@@ -18,18 +18,20 @@ import javax.servlet.http.HttpSession;
 import mum.cs472.dao.UserDao;
 import mum.cs472.dao.UserDaoImplementation;
 import mum.cs472.model.User;
+import mum.cs472.service.UserService;
+import mum.cs472.service.UserServiceImplementation;
 
 /**
  * Servlet implementation class SignUp
  */
-@WebServlet("/SignUpServlet")
-public class SignUp extends HttpServlet {
+@WebServlet("/SignUp")
+public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private UserDao userDao;
+	private UserService userService;
 
-	public SignUp() {
-		userDao = new UserDaoImplementation();
+	public SignUpServlet() {
+		userService = new UserServiceImplementation();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,10 +57,10 @@ public class SignUp extends HttpServlet {
 		String userId = request.getParameter("userId");
 
 		if (userId == null || userId.isEmpty())
-			userDao.addUser(user);
+			userService.addUser(user);
 		else {
 			user.setUserId(Integer.parseInt(userId));
-			userDao.updateUser(user);
+			userService.updateUser(user);
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/profile.jsp");
 		session.setAttribute("username", user.getFullname());

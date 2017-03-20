@@ -18,7 +18,7 @@
 						<h3 class="panel-title">Register Form</h3>
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" action="SignUpServlet" method="post">
+						<form class="form-horizontal" action="SignUp" method="post">
 							<fieldset>
 								<div class="form-group">
 									<label class="col-lg-2 control-label">Full

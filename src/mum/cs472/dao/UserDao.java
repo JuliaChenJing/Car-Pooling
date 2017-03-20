@@ -16,4 +16,6 @@ public interface UserDao {
 	public User getUserById(int userId);
 
 	public String findFullNameByEmail(String email);
+
+	public User getUserByEmail(String email);
 }

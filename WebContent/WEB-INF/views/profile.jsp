@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<div class="container">
+	
 
 		<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
@@ -20,17 +20,17 @@
 
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a href="/" class="navbar-brand"> HOME </a></li>
-			<li><a href="/about.jsp" class="navbar-brand"> ABOUT </a></li>
-			<li><a href="/contact.jsp" class="navbar-brand"> CONTACT </a></li>
+			<li><a href="/" class="navbar-brand"> Home </a></li>
+			<li><a href="/about.jsp" class="navbar-brand"> About </a></li>
+			<li><a href="/contact.jsp" class="navbar-brand"> Contact </a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li>${username}</li>
-			<li><a href="<%=request.getContextPath()%>/logoutServlet"
-				class="navbar-brand"> LOGOUT </a></li>
+			<li><a class="navbar-brand">${username}</a></li>
+			<li><a href="<%=request.getContextPath()%>/logout"
+				class="navbar-brand"> Logout </a></li>
 		</ul>
 		</nav>
-
+<div class="container">
 
 		<div class="col-sm-12">
 			<div class="col-sm-4">
@@ -38,8 +38,9 @@
 			</div>
 			<div class="col-sm-8">
 				<div class="jumbotron">
-					<h2>${username}<small>---> This is the user. </small>
-					</h2>
+					
+					<h3>FullName: ${user.fullname}</h3>
+					<h3>${user.street }</h3>
 
 					Description .....
 
