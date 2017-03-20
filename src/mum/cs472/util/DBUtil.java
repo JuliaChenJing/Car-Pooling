@@ -17,8 +17,8 @@ public class DBUtil {
 			Class.forName("com.mysql.jdbc.Driver");
 			// connect way #1
 			String url = "jdbc:mysql://localhost:3306/carpool?useSSL=false";
-			String user = "root";
-			String password = "";
+			String user = "cs544";
+			String password = "201511";
 
 			connection = DriverManager.getConnection(url, user, password);
 			if (connection != null) {

@@ -43,7 +43,8 @@
 									<label for="inputPassword" class="col-lg-2 control-label">Password</label>
 									<div class="col-lg-10">
 										<input type="password" name="password" class="form-control"
-											placeholder="Password">
+											placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$"
+											 title="Password complexity should be at least 6 letters and have at least one capital letter, one small letter, one number">
 									</div>
 								</div>
 								<div class="form-group">
@@ -137,7 +138,7 @@
 									<label class="col-lg-2 control-label">City</label>
 									<div class="col-lg-10">
 										<input type="text" class="form-control" name="city"
-											placeholder="Enter your city"pattern="^([A-Z]{3,200})$" 
+											placeholder="Enter your city"pattern="^([A-Za-z]{3,200})$" 
 											 title=" city name formed by letters">
 									</div>
 								</div>
@@ -145,8 +146,8 @@
 									<label class="col-lg-2 control-label">Birth-Year</label>
 									<div class="col-lg-10">
 										<input type="text" class="form-control" name="birthyear"
-											placeholder="Enter birth Year (YYYY)" pattern="((?:19|20)\d{2})‌​$"
-											 title=" birth year should be 4 digits and after 1900">
+											placeholder="Enter birth Year (YYYY)" pattern="19[0-9]{2}"
+											 title=" only members with 18+ years old are allowed to use the application">
 									</div>
 								</div>
 								
