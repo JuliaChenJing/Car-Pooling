@@ -54,6 +54,8 @@
 										</div>
 									</div>
 								</div>
+								
+								
 								<div class="form-group">
 									<label for="select" class="col-lg-2 control-label">State</label>
 									<div class="col-lg-10">
@@ -110,6 +112,12 @@
 											<option value="WI">Wisconsin</option>
 											<option value="WY">Wyoming</option>
 										</select>
+									</div>
+									
+									<label class="col-lg-2 control-label">City</label>
+									<div class="col-lg-10">
+										<input type="text" class="form-control" name="city"
+											placeholder="Enter your city">
 									</div>
 								</div>
 								
