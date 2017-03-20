@@ -6,12 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css"/>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" />
 <style>
-.container>.row
-{
-    margin-top: 20%;
-    }
+.container>.row {
+	margin-top: 15%;
+}
+
+#link-signup {
+	text-align: center;
+	font-size: 24px;
+	margin-left: 35%;
+}
 </style>
 
 </head>
@@ -25,9 +31,9 @@
 
 					</div>
 					<div class="panel-body">
-						<form action="loginServlet" method="post" class="form-horizontal">
+						<form action="login" method="post" class="form-horizontal">
 							<c:if test="${error}">
-								<div class="alert alert-danger">
+								<div class="alert alert-danger" id="errorBody">
 									<p>Invalid username and password</p>
 								</div>
 							</c:if>
@@ -38,15 +44,14 @@
 							</c:if>
 
 							<div class="input-group input-sm">
-								<label class="input-group-addon"> <i
-									class="fa fa-user"></i></label> <input type="text" class="form-control"
-									name="userId" placeholder="Enter Username" required>
+								<label class="input-group-addon"> <i class="fa fa-user"></i></label>
+								<input type="text" class="form-control" name="email"
+									placeholder="Enter Email" required>
 							</div>
 							<div class="input-group input-sm">
-								<label class="input-group-addon"> <i
-									class="fa fa-lock"></i></label> <input type="password"
-									class="form-control" name="passId" placeholder="Enter password" 
-									required>
+								<label class="input-group-addon"> <i class="fa fa-lock"></i></label>
+								<input type="password" class="form-control" name="password"
+									placeholder="Enter password" required>
 							</div>
 							<div class="form-actions">
 								<input type="submit"
@@ -56,8 +61,21 @@
 
 					</div>
 				</div>
+				<span id="link-signup"> <a href="SignUp">Create
+						account</a>
+				</span>
 			</div>
+
 		</div>
+
 	</div>
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#errorBody").effect("shake");
+		});
+	</script>
+
 </body>
 </html>
