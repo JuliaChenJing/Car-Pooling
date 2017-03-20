@@ -59,7 +59,7 @@ public class PostDaoImplementation implements PostDao {
 	public List<Post> getAllPosts() {
 		List<Post> posts = new ArrayList<Post>();
         try {
-        	String Query = "SELECT posts.*,users.fullname FROM posts RIGHT JOIN users ON posts.userid = users.userid;";
+        	String Query = "SELECT posts.*,users.fullname FROM posts RIGHT JOIN users ON posts.userid = users.userid ORDER BY posts.dateupdated desc;";
         	preparedStatement = (PreparedStatement) conn.prepareStatement(Query);
         	ResultSet resultSet = preparedStatement.executeQuery();
         	
