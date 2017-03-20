@@ -21,18 +21,22 @@
 						<form class="form-horizontal" action="SignUp" method="post">
 							<fieldset>
 								<div class="form-group">
+								
 									<label class="col-lg-2 control-label">Full
 										Name</label>
 									<div class="col-lg-10">
 										<input type="text" name="fullname" class="form-control"
-											placeholder="Enter Full name">
+											placeholder="Enter Full name" pattern="^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$" 
+											 title=" username is 8-20 characters long ">
 									</div>
 								</div>
 								<div class="form-group">
+								
 									<label class="col-lg-2 control-label">Email</label>
 									<div class="col-lg-10">
 										<input type="text" name="email" class="form-control"
-											placeholder="Enter your Email">
+											placeholder="Enter your Email" pattern="^[a-zA-Z_\-]+@(([a-zA-Z_\-])+\.)+[a-zA-Z]{2,4}$" 
+											 title=" email address ">
 									</div>
 								</div>
 								<div class="form-group">
@@ -117,7 +121,8 @@
 									<label class="col-lg-2 control-label">ZipCode</label>
 									<div class="col-lg-10">
 										<input type="text" class="form-control" name="zipcode"
-											placeholder="Enter Zip Code">
+											placeholder="Enter Zip Code" pattern="[0-9]{5}" 
+											 title=" 5 digit zip code ">
 									</div>
 								</div>
 								
@@ -132,14 +137,16 @@
 									<label class="col-lg-2 control-label">City</label>
 									<div class="col-lg-10">
 										<input type="text" class="form-control" name="city"
-											placeholder="Enter your city">
+											placeholder="Enter your city"pattern="^([A-Z]{3,200})$" 
+											 title=" city name formed by letters">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-2 control-label">Birth-Year</label>
 									<div class="col-lg-10">
 										<input type="text" class="form-control" name="birthyear"
-											placeholder="Enter birth Year (YYYY)">
+											placeholder="Enter birth Year (YYYY)" pattern="((?:19|20)\d{2})‌​$"
+											 title=" birth year should be 4 digits and after 1900">
 									</div>
 								</div>
 								
