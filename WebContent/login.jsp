@@ -61,7 +61,7 @@
 
 					</div>
 				</div>
-				<span id="link-signup"> <a href="SignUpServlet">Create
+				<span id="link-signup"> <a href="SignUp">Create
 						account</a>
 				</span>
 			</div>

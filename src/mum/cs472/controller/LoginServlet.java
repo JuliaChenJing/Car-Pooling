@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("profile");
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
-			dispatcher.forward(request, response);
+			dispatcher.include(request, response);
 		} else {
 			request.setAttribute("error", true);
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/login.jsp");

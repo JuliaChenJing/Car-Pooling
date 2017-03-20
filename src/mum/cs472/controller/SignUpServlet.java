@@ -56,14 +56,15 @@ public class SignUpServlet extends HttpServlet {
 
 		String userId = request.getParameter("userId");
 
-		if (userId == null || userId.isEmpty())
+		if (userId == null || userId.isEmpty()) {
 			userService.addUser(user);
-		else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("profile");
+			session.setAttribute("email", request.getParameter("email"));
+			dispatcher.include(request, response);
+		} else {
 			user.setUserId(Integer.parseInt(userId));
 			userService.updateUser(user);
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/profile.jsp");
-		session.setAttribute("username", user.getFullname());
-		dispatcher.forward(request, response);
+
 	}
 }
