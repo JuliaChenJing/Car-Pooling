@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -34,6 +35,17 @@ b {
 	font-size: 20px;
 }
 </style>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8"></script>
+	<script src="weatherMap.js"></script>
+	<link rel="stylesheet" type="text/css" href="weatherMap.css"/>
+	<script>
+	  function displyMap(cityName,stateName){		  
+		  displayWeatherMapWindow($("[name='"+cityName+"']").val()
+				  +','+$("[name='"+stateName+"']").val()
+				  );
+	  }
+	</script>
 </head>
 <body>
 	<%@include file="header.jsp"%>
@@ -199,6 +211,8 @@ b {
 				<div class="col-lg-10 col-lg-offset-2">
 					<input id="submit" name="submit" type="submit" value="Post"
 						class="btn btn-primary">
+          <button type="button" onclick="displyMap('cityFrom','stateFrom')" class="btn btn-info">Departure Weather</button>
+					<button type="button" onclick="displyMap('cityTo','stateTo')" class="btn btn-info">Destination Weather</button>
 				</div>
 			</div>
 		</form>
