@@ -9,7 +9,7 @@ public class Comment {
 	private String comment;
 	private Date dateCreated;
 	private Date dateUpdated;
-	
+	private String username;
 	public Comment() {
 	}
 
@@ -74,6 +74,10 @@ public class Comment {
 	public String toString() {
 		return "Comment [commentId=" + commentId + ", userId=" + userId + ", postId=" + postId + ", comment=" + comment
 				+ ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + "]";
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }
