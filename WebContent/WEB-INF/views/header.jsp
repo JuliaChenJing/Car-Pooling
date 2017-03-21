@@ -1,9 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+
 <header class="main-header">
 		<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
 			<a href="/" class="navbar-brand"> Car Pool </a>
+			<a href="#" onclick="displayWeatherMapWindow('')" class="navbar-brand"> Weather Search </a>
 
 
 		</div>
