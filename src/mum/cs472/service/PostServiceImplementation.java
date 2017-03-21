@@ -5,7 +5,6 @@ import java.util.List;
 import mum.cs472.dao.PostDao;
 import mum.cs472.dao.PostDaoImplementation;
 import mum.cs472.model.Post;
-import mum.cs472.model.User;
 
 public class PostServiceImplementation implements PostService {
 
