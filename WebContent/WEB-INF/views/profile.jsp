@@ -23,9 +23,10 @@
 .media-body>.well {
 	margin-left: 206px;
 }
-b{
-font-weight: 700;
-font-size: 20px;
+
+b {
+	font-weight: 700;
+	font-size: 20px;
 }
 </style>
 </head>
@@ -175,7 +176,7 @@ font-size: 20px;
 			</div>
 
 
-            <!-- update new messages here: POST----------- -->
+			<!-- update new messages here: POST----------- -->
 			<div class="form-group">
 				<label for="message" class="col-lg-2 control-label">Message</label>
 				<div class="col-lg-10">
@@ -183,8 +184,9 @@ font-size: 20px;
 				</div>
 			</div>
 
-			<input type="text" name="userIdHidden" id="userId" value="${user.userId}" hidden>
-			<input type="text" name="email" value="${user.email}" hidden>
+			<input type="text" name="userIdHidden" id="userId"
+				value="${user.userId}" hidden> <input type="text"
+				name="email" value="${user.email}" hidden>
 
 			<div class="form-group">
 				<div class="col-lg-10 col-lg-offset-2">
@@ -199,69 +201,138 @@ font-size: 20px;
 
 		<c:forEach var="post" items="${postList}">
 
-		<div class="row">
-		<div class="media-body">
-			<div class="well well-lg">
-				<h4 class="media-heading text-uppercase reviews">${post.username}</h4>
-				<ul class="media-date text-uppercase reviews list-inline">
-					<li class="dd">${post.dateUpdated}</li><br />
-					<li class="dd">${post.cityFrom} <a>to</a> ${post.cityFrom}</li>
-				</ul>
-				<input type="text" id="postId" value="${post.postId}" hidden>
-				<p class="media-comment">${post.post}</p>
-			    	<!-- LIKE----------- -->
-				    <a id="likeButton" class="btn btn-default btn-circle-like">
-				       <span class="glyphicon glyphicon-thumbs-up"> </span>
-				    </a>
-				    <!--REPLY----------- -->
-					 <a class="btn btn-success btn-circle text-uppercase" href="#"> 
-					 <span 	class="glyphicon glyphicon-share-alt"></span>Reply
-			     	</a>
-			     	
-			     	<!-- COMMENTS----------- -->
-				    <a class="btn btn-warning btn-circle text-uppercase"
-				     	data-toggle="collapse" href="#replyOne"> 
-					<span class="glyphicon glyphicon-comment"></span> 2 comments
-				</a>
-			
-				<p id="userLikes">Liked By: [<c:forEach var="likes" items="${likeList}">
-				${likes.userId},
-			</c:forEach>]
-			</p>
+			<div class="row">
+				<div class="media-body">
+					<div class="well well-lg">
+						<h4 class="media-heading text-uppercase reviews">${post.username}</h4>
+						<ul class="media-date text-uppercase reviews list-inline">
+							<li class="dd">${post.dateUpdated}</li>
+							<br />
+							<li class="dd">${post.cityFrom}<a>to</a> ${post.cityFrom}
+							</li>
+						</ul>
+						<input type="text" id="postId" value="${post.postId}" hidden>
+						<p class="media-comment">${post.post}</p>
+						<!-- LIKE----------- -->
+						<a id="likeButton" class="btn btn-default btn-circle-like"> <span
+							class="glyphicon glyphicon-thumbs-up"> </span>
+						</a>
+						<!--REPLY: add new comments---------- -->
+						<a  id="replyButton" class="btn btn-success btn-circle text-uppercase" href="#">
+							<span class="glyphicon glyphicon-share-alt"></span>Reply
+						</a>
+
+						<!-- COMMENTS: show old comments----------- -->
+						<a  id="commentsButton" class="btn btn-warning btn-circle text-uppercase"
+							data-toggle="collapse" href="#replyOne"> <span
+							class="glyphicon glyphicon-comment"></span> 2 comments
+						</a>
+
+						<p id="userLikes">
+							Liked By: [
+							<c:forEach var="likes" items="${likeList}">${likes.userId},</c:forEach>
+							]
+						</p>
+					</div>
+
+				</div>
 			</div>
-			
-		</div>
-		</div>
 		</c:forEach>
 
 	</div>
 	<%@include file="footer.jsp"%>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
-	$(document).ready(function(){
-		$("#likeButton").click(function(){
-			var userId = $('#userId').attr('value');
-			var postId = $('#postId').attr('value');
-			console.log(userId);
-			console.log(postId);
-			 $.ajax({
-			        url: "like",
-			        type: "POST",
-			        data: {'userId': userId, 'postId': postId},
-			        success: ajaxSuccess,
-			        error: ajaxFailure
-			    });
+	//the action of like button
+		$(document).ready(function() {
+			
+			$("#likeButton").click(function() {
+				console.log("------------------->like button clicked");
+				var userId = $('#userId').attr('value');
+				var postId = $('#postId').attr('value');
+				console.log(userId);
+				console.log(postId);
+				$.ajax({
+					url : "like",
+					type : "POST",
+					data : {
+						'userId' : userId,
+						'postId' : postId
+					},
+					success : ajaxSuccess,
+					error : ajaxFailure
+				});
+			});
+
+			function ajaxSuccess(data) {
+				console.log('success data to POst');
+			}
+
+			function ajaxFailure(xhr, status, exception) {
+				console.log(xhr, status, exception);
+			}
 		});
 		
-		function ajaxSuccess(data) {
-		    console.log('success data to POst');
-		}
+		//the action of reply button, show a window to let user input their reply to the post
+		//when finish, show all the comments including the newest comment created by the user
+		$(document).ready(function() {
+			$("#replyButton").click(function() {
+				console.log("------------------->reply button clicked");
+				var userId = $('#userId').attr('value');
+				var postId = $('#postId').attr('value');
+				console.log(userId);
+				console.log(postId);
+				$.ajax({
+					url : "like",
+					type : "POST",
+					data : {
+						'userId' : userId,
+						'postId' : postId
+					},
+					success : ajaxSuccess,
+					error : ajaxFailure
+				});
+			});
 
-		function ajaxFailure(xhr, status, exception) {
-		    console.log(xhr, status, exception);
-		}
-	});
+			function ajaxSuccess(data) {
+				console.log('success data to Post');
+			}
+
+			function ajaxFailure(xhr, status, exception) {
+				console.log(xhr, status, exception);
+			}
+		});
+		
+		//the action of comments button, show the previous comments to this post
+		$(document).ready(function() {
+			$("#commentsButton").click(function() {
+				console.log("------------------->comments button clicked");
+				var userId = $('#userId').attr('value');
+				var postId = $('#postId').attr('value');
+				console.log(userId);
+				console.log(postId);
+				$.ajax({
+					url : "like",
+					type : "POST",
+					data : {
+						'userId' : userId,
+						'postId' : postId
+					},
+					success : ajaxSuccess,
+					error : ajaxFailure
+				});
+			});
+
+			function ajaxSuccess(data) {
+				console.log('success data to Post');
+			}
+
+			function ajaxFailure(xhr, status, exception) {
+				console.log(xhr, status, exception);
+			}
+		});
 	</script>
 </body>
 </html>
