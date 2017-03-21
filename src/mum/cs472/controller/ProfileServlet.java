@@ -59,11 +59,7 @@ public class ProfileServlet extends HttpServlet {
 		// postService.getUsernameByPostId(postId));
 		// }
 		// }
-		if (request.getAttribute("postId") != null) {
-			int postId = Integer.parseInt(request.getParameter("postId"));
-			List<Like> likeList = likeService.getAllLikes(postId);
-			request.setAttribute("likeList", likeList);
-		}
+		
 		dispatcher.forward(request, response);
 	}
 

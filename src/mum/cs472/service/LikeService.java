@@ -11,4 +11,6 @@ public interface LikeService {
 	boolean updateLike(Like like);
 
 	List<Like> getAllLikes(int postId);
+
+	boolean userValidToLike(int userId, int postId);
 }

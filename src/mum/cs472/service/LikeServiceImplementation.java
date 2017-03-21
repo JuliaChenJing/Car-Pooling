@@ -32,4 +32,11 @@ public class LikeServiceImplementation implements LikeService {
 	public List<Like> getAllLikes(int postId) {
 		return likeDao.getAllLikes(postId);
 	}
+
+	@Override
+	public boolean userValidToLike(int userId, int postId) {
+		return likeDao.userValidToLike(userId, postId);
+	}
+
+	
 }

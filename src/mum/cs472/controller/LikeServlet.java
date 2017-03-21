@@ -1,6 +1,7 @@
 package mum.cs472.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,24 +37,31 @@ public class LikeServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		int loggedInUserId =  Integer.parseInt(request.getParameter("loggedInUserId"));
 		Like like = new Like();
 		int postId = Integer.parseInt(request.getParameter("postId"));
-		like.setUserId(Integer.parseInt(request.getParameter("userId")));
+		like.setUserId(loggedInUserId);
 		like.setPostId(Integer.parseInt(request.getParameter("postId")));
 		
-		String likeId = (String)request.getParameter("likeId");
 
+		String likeId = (String)request.getParameter("likeId");
+		
 		if (likeId == null || likeId.isEmpty()) {
-			HttpSession session = request.getSession();
+			if(likeService.userValidToLike(like.getUserId(), like.getPostId())){
 			likeService.addLike(like);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("profile");
-			request.setAttribute("postId", postId);
-			dispatcher.include(request, response);
-		} else {
-			like.setlikeId(Integer.parseInt(likeId));
-	//			likeService.updateLike(like);
 			}
+			List<Like> likeList = likeService.getAllLikes(postId);
+			
+			StringBuilder sb = new StringBuilder();
+			for(Like user: likeList){
+				sb.append(user.getUsername()+", ");
+			}
+			
+			String usernamesLikes = sb.toString();
+			response.setContentType("text/plain");
+			response.getWriter().write(usernamesLikes);
+		}
 
 	}
 

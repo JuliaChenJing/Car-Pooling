@@ -9,6 +9,7 @@ public class Like {
 	private Date dateCreated;
 	private Date dateUpdated;
 	boolean isLiked;
+	private String username;
 	
 	public Like() {
 	}
@@ -25,7 +26,13 @@ public class Like {
 	public void setLikeId(int likeId) {
 		this.likeId = likeId;
 	}
+	public String getUsername() {
+		return username;
+	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public int getUserId() {
 		return userId;
 	}

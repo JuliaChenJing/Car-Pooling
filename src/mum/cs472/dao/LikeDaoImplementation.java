@@ -55,7 +55,7 @@ public class LikeDaoImplementation implements LikeDao {
 	public List<Like> getAllLikes(int postId) {
 		List<Like> likeList = new ArrayList<Like>();
 		try {
-			String query = "SELECT * FROM likes WHERE postId = ?";
+			String query = "SELECT likes.*,users.fullname FROM likes JOIN users ON likes.userid = users.userid AND likes.postid = ? ORDER BY likes.dateupdated desc;";
 			preparedStatement = (PreparedStatement) conn.prepareStatement(query);
 			preparedStatement.setInt(1, postId);
 			
@@ -68,7 +68,7 @@ public class LikeDaoImplementation implements LikeDao {
                 like.setPostId(resultSet.getInt("postid"));
                 like.setDateCreated(resultSet.getDate("datecreated"));
                 like.setDateCreated(resultSet.getDate("datecreated"));
-                
+                like.setUsername(resultSet.getString("fullname"));
                 likeList.add(like);
             }
 			preparedStatement.close();
@@ -77,5 +77,26 @@ public class LikeDaoImplementation implements LikeDao {
 			e.printStackTrace();
 		}
 		return likeList;
+	}
+
+	@Override
+	public boolean userValidToLike(int userId, int postId) {
+		boolean status = true;
+	
+		try {
+			String query = "SELECT * from likes where userid = ? and postid = ?";
+			preparedStatement = (PreparedStatement) conn.prepareStatement(query);
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, postId);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			 while (resultSet.next()) {
+				 status = false;
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return status;
 	}
 }

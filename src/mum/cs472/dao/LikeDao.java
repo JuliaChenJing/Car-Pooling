@@ -9,5 +9,6 @@ public interface LikeDao {
 	void addLike(Like like);
 	void updateLike(Like like);
 	List<Like> getAllLikes(int postId);
+	boolean userValidToLike(int userId, int postId);
 
 }
