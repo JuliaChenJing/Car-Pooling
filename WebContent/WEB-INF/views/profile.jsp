@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,8 +19,13 @@
 	line-height: 2.00;
 	border-radius: 45px;
 }
-.media-body > .well {
+
+.media-body>.well {
 	margin-left: 206px;
+}
+b{
+font-weight: 700;
+font-size: 20px;
 }
 </style>
 </head>
@@ -99,12 +104,12 @@
 						<option value="WY">Wyoming</option>
 					</select>
 				</div>
-				
-								<div class="col-lg-2">
-										<input type="text" class="form-control" name="cityFrom"
-											placeholder="Enter city From">
-									</div>
-				
+
+				<div class="col-lg-2">
+					<input type="text" class="form-control" name="cityFrom"
+						placeholder="Enter city From">
+				</div>
+
 
 				<label for="select" class="col-lg-2 control-label">To</label>
 				<div class="col-lg-2">
@@ -162,13 +167,13 @@
 						<option value="WY">Wyoming</option>
 					</select>
 				</div>
-									<div class="col-lg-2">
-										<input type="text" class="form-control" name="cityTo"
-											placeholder="Enter city To">
-									</div>
-				
+				<div class="col-lg-2">
+					<input type="text" class="form-control" name="cityTo"
+						placeholder="Enter city To">
+				</div>
+
 			</div>
-			
+
 
             <!-- update new messages here: POST----------- -->
 			<div class="form-group">
@@ -180,7 +185,7 @@
 
 			<input type="text" name="userIdHidden" id="userId" value="${user.userId}" hidden>
 			<input type="text" name="email" value="${user.email}" hidden>
-			
+
 			<div class="form-group">
 				<div class="col-lg-10 col-lg-offset-2">
 					<input id="submit" name="submit" type="submit" value="Post"
@@ -191,8 +196,9 @@
 
 
 		<!-- Posted things visible here----------- -->
-		
+
 		<c:forEach var="post" items="${postList}">
+
 		<div class="row">
 		<div class="media-body">
 			<div class="well well-lg">
