@@ -50,6 +50,7 @@ public class CommentServlet extends HttpServlet {
 		}
 		response.setContentType("text/plain");
 		response.getWriter().write(request.getParameter("comment"));
+
 	}
 
 }
