@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,7 +19,8 @@
 	line-height: 2.00;
 	border-radius: 45px;
 }
-.media-body > .well {
+
+.media-body>.well {
 	margin-left: 206px;
 }
 </style>
@@ -99,12 +100,12 @@
 						<option value="WY">Wyoming</option>
 					</select>
 				</div>
-				
-								<div class="col-lg-2">
-										<input type="text" class="form-control" name="cityFrom"
-											placeholder="Enter city From">
-									</div>
-				
+
+				<div class="col-lg-2">
+					<input type="text" class="form-control" name="cityFrom"
+						placeholder="Enter city From">
+				</div>
+
 
 				<label for="select" class="col-lg-2 control-label">To</label>
 				<div class="col-lg-2">
@@ -162,13 +163,13 @@
 						<option value="WY">Wyoming</option>
 					</select>
 				</div>
-									<div class="col-lg-2">
-										<input type="text" class="form-control" name="cityTo"
-											placeholder="Enter city To">
-									</div>
-				
+				<div class="col-lg-2">
+					<input type="text" class="form-control" name="cityTo"
+						placeholder="Enter city To">
+				</div>
+
 			</div>
-			
+
 
 
 			<div class="form-group">
@@ -180,7 +181,7 @@
 
 			<input type="text" name="userIdHidden" value="${user.userId}" hidden>
 			<input type="text" name="email" value="${user.email}" hidden>
-			
+
 			<div class="form-group">
 				<div class="col-lg-10 col-lg-offset-2">
 					<input id="submit" name="submit" type="submit" value="Post"
@@ -191,30 +192,31 @@
 
 
 		<!-- Posted things visible here----------- -->
-		
+
 		<c:forEach var="post" items="${postList}">
-		<div class="row">
-		<div class="media-body">
-			<div class="well well-lg">
-				<h4 class="media-heading text-uppercase reviews">${post.username}</h4>
-				<ul class="media-date text-uppercase reviews list-inline">
-					<li class="dd">${post.dateUpdated}</li><br />
-					<li class="dd">${post.cityFrom} <a>to</a> ${post.cityFrom}</li>
-				</ul>
-				
-				<p class="media-comment">${post.post}</p>
-				<a class="btn btn-default btn-circle-like"><span
-					class="glyphicon glyphicon-thumbs-up"> </span></a> <a
-					class="btn btn-success btn-circle text-uppercase" href="#"> <span
-					class="glyphicon glyphicon-share-alt"></span>Reply
-				</a>
-				 <a class="btn btn-warning btn-circle text-uppercase"
-					data-toggle="collapse" href="#replyOne"> <span
-					class="glyphicon glyphicon-comment"></span> 2 comments
-				</a>
+			<div class="row">
+				<div class="media-body">
+					<div class="well well-lg">
+						<h4 class="media-heading text-uppercase reviews">${post.username}</h4>
+						<ul class="media-date text-uppercase reviews list-inline">
+							<li class="dd">${post.dateUpdated}</li>
+							<br />
+							<li class="dd">${post.cityFrom}<a>to</a> ${post.cityFrom}
+							</li>
+						</ul>
+
+						<p class="media-comment">${post.post}</p>
+						<a class="btn btn-default btn-circle-like"> <span
+							class="glyphicon glyphicon-thumbs-up"> </span></a> <a
+							class="btn btn-success btn-circle text-uppercase" href="#"> <span
+							class="glyphicon glyphicon-share-alt"></span>Reply
+						</a> <a class="btn btn-warning btn-circle text-uppercase"
+							data-toggle="collapse" href="#replyOne"> <span
+							class="glyphicon glyphicon-comment"></span> 2 comments
+						</a>
+					</div>
+				</div>
 			</div>
-		</div>
-		</div>
 		</c:forEach>
 
 	</div>
