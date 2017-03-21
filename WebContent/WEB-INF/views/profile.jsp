@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -23,15 +24,19 @@
 .media-body>.well {
 	margin-left: 206px;
 }
+.btn-default2 {
+    color: #ffffff;
+    background-color: #2cbfc8;
+    border-color: #2adce8;
+}
 
 b {
 	font-weight: 700;
 	font-size: 20px;
 }
 </style>
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8"></script>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8"></script>
 	<script src="weatherMap.js"></script>
 	<link rel="stylesheet" type="text/css" href="weatherMap.css"/>
 	<script>
@@ -41,7 +46,6 @@ b {
 				  );
 	  }
 	</script>
-	
 </head>
 <body>
 	<%@include file="header.jsp"%>
@@ -120,10 +124,9 @@ b {
 				</div>
 
 				<div class="col-lg-2">
-					<input type="text" class="form-control" id="cityfrom" name="cityFrom"
+					<input type="text" class="form-control" name="cityFrom"
 						placeholder="Enter city From">
 				</div>
-				
 
 
 				<label for="select" class="col-lg-2 control-label">To</label>
@@ -190,7 +193,7 @@ b {
 			</div>
 
 
-			<!-- update new messages here: POST----------- -->
+			<!--show all the existing post---------- -->
 			<div class="form-group">
 				<label for="message" class="col-lg-2 control-label">Message</label>
 				<div class="col-lg-10">
@@ -208,14 +211,14 @@ b {
 				<div class="col-lg-10 col-lg-offset-2">
 					<input id="submit" name="submit" type="submit" value="Post"
 						class="btn btn-primary">
-					<button type="button" onclick="displyMap('cityFrom','stateFrom')" class="btn btn-info">Departure Weather</button>
+          <button type="button" onclick="displyMap('cityFrom','stateFrom')" class="btn btn-info">Departure Weather</button>
 					<button type="button" onclick="displyMap('cityTo','stateTo')" class="btn btn-info">Destination Weather</button>
 				</div>
 			</div>
 		</form>
 
 
-		<!-- Posted things visible here----------- -->
+		<!-- add new post----------- -->
 
 		<c:forEach var="post" items="${postList}">
 
@@ -233,18 +236,21 @@ b {
 						<input type="text" id="userIdInPost${post.userId}" value="${post.userId}" hidden>
 						
 						<p class="media-comment">${post.post}</p>
-						<!-- LIKE----------- -->
+						
+						
 						<p>
+				        	<!-- LIKE-BUTTON--------- -->
 							<i class="likeButton${post.postId}"><a class="btn btn-default btn-circle-like">
 								<span class="glyphicon glyphicon-thumbs-up"> </span>
 							</a></i>
-							<!--REPLY----------- -->
-							<a class="btn btn-success btn-circle text-uppercase" href="#">
+							
+							<!--REPLY--BUTTON-------- -->
+							<a class="replyButton${post.postId} btn btn-success btn-circle text-uppercase"   href="#">
 								<span class="glyphicon glyphicon-share-alt"></span>Reply
 							</a>
 
-							<!-- COMMENTS----------- -->
-							<a class="btn btn-warning btn-circle text-uppercase"
+							<!-- COMMENTS--BUTTON--------- -->
+							<a class="replyButton${post.postId} btn btn-warning btn-circle text-uppercase" 
 								data-toggle="collapse" href="#replyOne"> <span
 								class="glyphicon glyphicon-comment"></span> 2 comments
 							</a>
@@ -255,18 +261,22 @@ b {
 
 				</div>
 			</div>
-			<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
+	
+	
+	    //the action of the LIKE BUTTON
 		$(document).ready(function() {
 			
 			$(".likeButton${post.postId}").click(function() {
 				let postId = $('#postId${post.postId}').attr('value');
 				let userId = $('#userIdInPost${post.userId}').attr('value');
 				let loggedInUserId = $('#loggedInUserId').attr('value');
+				
 				console.log(userId);
 				console.log(postId);
 				console.log(loggedInUserId);
+				
 				$.ajax({
 					url : "like",
 					type : "POST",
@@ -283,14 +293,88 @@ b {
 			function ajaxSuccess(responseText) {
 				console.log('ajax success');
 				$("#ajaxSuccessReturn${post.postId}").text(responseText);
+				$(".likeButton${post.postId}").removeClass("glyphicon glyphicon-thumbs-up").addClass("glyphicon glyphicon-ok");
 			}
 
 			function ajaxFailure(xhr, status, exception) {
 				console.log(xhr, status, exception);
 			}
 		});
-	</script>
-			
+	    
+	    
+		//the action of REPLY BUTTON, show a window to let user input their reply to the post
+		//when finish, show all the comments including the newest comment created by the user
+		$(document).ready(function() {
+			$(".replyButton${post.postId}").click(function() {
+				let postId = $('#postId${post.postId}').attr('value');
+				let userId = $('#userIdInPost${post.userId}').attr('value');
+				let loggedInUserId = $('#loggedInUserId').attr('value');
+				
+				console.log(userId);
+				console.log(postId);
+				console.log(loggedInUserId);
+				
+				$.ajax({
+					url : "comments",
+					type : "POST",
+					data : {
+						'userId' : userId,
+						'postId' : postId,
+						'loggedInUserId': loggedInUserId
+					},
+					success : ajaxSuccess,
+					error : ajaxFailure
+				});
+			});
+
+			function ajaxSuccess(responseText) {
+				console.log('ajax success');
+				$("#ajaxSuccessReturn${post.postId}").text(responseText);
+				$(".likeButton${post.postId}").removeClass("glyphicon glyphicon-thumbs-up").addClass("glyphicon glyphicon-ok");
+			}
+
+			function ajaxFailure(xhr, status, exception) {
+				console.log(xhr, status, exception);
+			}
+		});
+		
+		//the action of COMMENTS BUTTON, show the previous comments to this post
+		$(document).ready(function() {
+			$(".commentsButton${post.postId}").click(function() {
+				let postId = $('#postId${post.postId}').attr('value');
+				let userId = $('#userIdInPost${post.userId}').attr('value');
+				let loggedInUserId = $('#loggedInUserId').attr('value');
+				
+				console.log(userId);
+				console.log(postId);
+				console.log(loggedInUserId);
+				
+				$.ajax({
+					url : "comments",
+					type : "GET",
+					data : {
+						'userId' : userId,
+						'postId' : postId,
+						'loggedInUserId': loggedInUserId
+					},
+					success : ajaxSuccess,
+					error : ajaxFailure
+				});
+			});
+
+			function ajaxSuccess(responseText) {
+				console.log('ajax success');
+				$("#ajaxSuccessReturn${post.postId}").text(responseText);
+				$(".likeButton${post.postId}").removeClass("glyphicon glyphicon-thumbs-up").addClass("glyphicon glyphicon-ok");
+			}
+
+			function ajaxFailure(xhr, status, exception) {
+				console.log(xhr, status, exception);
+			}
+		});
+	    
+	    
+	</script>	
 		</c:forEach>
 
 	</div>

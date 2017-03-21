@@ -41,7 +41,7 @@ public class PostServlet extends HttpServlet{
 		
 		String postId = (String)request.getParameter("postId");
 
-		if (postId == null || postId.isEmpty()) {
+		if(postId == null || postId.isEmpty()) {
 			HttpSession session = request.getSession();
 			postService.addPost(post);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("profile");
