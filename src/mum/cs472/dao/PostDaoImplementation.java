@@ -22,6 +22,7 @@ public class PostDaoImplementation implements PostDao {
 	}
 
 
+
 	@Override
 	public void addPost(Post post) {
 	
@@ -51,7 +52,25 @@ public class PostDaoImplementation implements PostDao {
 	@Override
 	public boolean updatePost(Post post) {
 		
-		return false;
+		try {
+			String insertQuery = "update users set userid=?, post=?, posttype=?, datecreated=?, dateupdated=?, cityfrom=?, cityto=?" +
+                    "where postid=?";
+			preparedStatement = (PreparedStatement) conn.prepareStatement(insertQuery);
+
+            // Parameters start with 1
+        	preparedStatement.setInt(1, post.getUserId());
+			preparedStatement.setString(2, post.getPost());
+			preparedStatement.setInt(3, post.getPostType());
+			preparedStatement.setDate(4, (Date)post.getDateCreated());
+			preparedStatement.setDate(5, (Date)post.getDateUpdated());
+			preparedStatement.setString(6, post.getCityFrom());
+			preparedStatement.setString(7, post.getCityTo());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return true;
 	}
 
 
