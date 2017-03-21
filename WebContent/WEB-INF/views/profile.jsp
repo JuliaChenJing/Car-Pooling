@@ -23,6 +23,10 @@
 .media-body>.well {
 	margin-left: 206px;
 }
+b{
+font-weight: 700;
+font-size: 20px;
+}
 </style>
 </head>
 <body>
@@ -194,12 +198,14 @@
 		<!-- Posted things visible here----------- -->
 
 		<c:forEach var="post" items="${postList}">
-			<div class="row">
+			<div id="posts" class="row">
 				<div class="media-body">
 					<div class="well well-lg">
-						<h4 class="media-heading text-uppercase reviews">${post.username}</h4>
-						<ul class="media-date text-uppercase reviews list-inline">
-							<li class="dd">${post.dateUpdated}</li>
+						<b class="media-heading text-uppercase reviews">${post.username}</b> made a post
+						<ul class="media-date reviews list-inline">
+							<li>
+							posted at "${post.dateUpdated}"
+							</li>
 							<br />
 							<li class="dd">${post.cityFrom}<a>to</a> ${post.cityFrom}
 							</li>
@@ -221,5 +227,6 @@
 
 	</div>
 	<%@include file="footer.jsp"%>
+	
 </body>
 </html>
