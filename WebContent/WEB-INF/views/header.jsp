@@ -12,9 +12,13 @@
 			
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
+		<li><a href="notification" class="navbar-brand"><span class="glyphicon glyphicon-bell"></span> 1</a></li>
 			<li><a class="navbar-brand"><span class="glyphicon glyphicon-user"></span>${user.fullname}</a></li>
 			<li><a href="<%=request.getContextPath()%>/logout"
 				class="navbar-brand"> <span class="glyphicon glyphicon-off"></span> Logout </a></li>
 		</ul>
 		</nav>
 </header>
+<script>
+
+</script>
