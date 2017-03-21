@@ -35,6 +35,18 @@ b {
 	font-size: 20px;
 }
 </style>
+<!-- weather include file -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8"></script>
+	<script src="weatherMap.js"></script>
+	<link rel="stylesheet" type="text/css" href="weatherMap.css"/>
+	<script>
+	  function displyMap(cityName,stateName){		  
+		  displayWeatherMapWindow($("[name='"+cityName+"']").val()
+				  +','+$("[name='"+stateName+"']").val()
+				  );
+	  }
+	</script>
+<!-- weather include file end -->
 </head>
 <body>
 	<%@include file="header.jsp"%>

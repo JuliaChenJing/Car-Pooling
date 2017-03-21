@@ -160,6 +160,9 @@
 				<div class="col-lg-10 col-lg-offset-2">
 					<input id="submit" name="submit" type="submit" value="Post"
 						class="btn btn-primary">
+					<button type="button" onclick="displyMap('cityFrom','stateFrom')" class="btn btn-info">Departure Weather</button>
+					<button type="button" onclick="displyMap('cityTo','stateTo')" class="btn btn-info">Destination Weather</button>
+					
 				</div>
 			</div>
 		</form>
