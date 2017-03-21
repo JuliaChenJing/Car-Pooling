@@ -170,7 +170,7 @@
 			</div>
 			
 
-
+            <!-- update new messages here: POST----------- -->
 			<div class="form-group">
 				<label for="message" class="col-lg-2 control-label">Message</label>
 				<div class="col-lg-10">
@@ -178,7 +178,7 @@
 				</div>
 			</div>
 
-			<input type="text" name="userIdHidden" value="${user.userId}" hidden>
+			<input type="text" name="userIdHidden" id="userId" value="${user.userId}" hidden>
 			<input type="text" name="email" value="${user.email}" hidden>
 			
 			<div class="form-group">
@@ -201,23 +201,61 @@
 					<li class="dd">${post.dateUpdated}</li><br />
 					<li class="dd">${post.cityFrom} <a>to</a> ${post.cityFrom}</li>
 				</ul>
-				
+				<input type="text" id="postId" value="${post.postId}" hidden>
 				<p class="media-comment">${post.post}</p>
-				<a class="btn btn-default btn-circle-like"><span
-					class="glyphicon glyphicon-thumbs-up"> </span></a> <a
-					class="btn btn-success btn-circle text-uppercase" href="#"> <span
-					class="glyphicon glyphicon-share-alt"></span>Reply
+			    	<!-- LIKE----------- -->
+				    <a id="likeButton" class="btn btn-default btn-circle-like">
+				       <span class="glyphicon glyphicon-thumbs-up"> </span>
+				    </a>
+				    <!--REPLY----------- -->
+					 <a class="btn btn-success btn-circle text-uppercase" href="#"> 
+					 <span 	class="glyphicon glyphicon-share-alt"></span>Reply
+			     	</a>
+			     	
+			     	<!-- COMMENTS----------- -->
+				    <a class="btn btn-warning btn-circle text-uppercase"
+				     	data-toggle="collapse" href="#replyOne"> 
+					<span class="glyphicon glyphicon-comment"></span> 2 comments
 				</a>
-				 <a class="btn btn-warning btn-circle text-uppercase"
-					data-toggle="collapse" href="#replyOne"> <span
-					class="glyphicon glyphicon-comment"></span> 2 comments
-				</a>
+			
+				<p id="userLikes">Liked By: [<c:forEach var="likes" items="${likeList}">
+				${likes.userId},
+			</c:forEach>]
+			</p>
 			</div>
+			
 		</div>
 		</div>
 		</c:forEach>
 
 	</div>
 	<%@include file="footer.jsp"%>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#likeButton").click(function(){
+			var userId = $('#userId').attr('value');
+			var postId = $('#postId').attr('value');
+			console.log(userId);
+			console.log(postId);
+			 $.ajax({
+			        url: "like",
+			        type: "POST",
+			        data: {'userId': userId, 'postId': postId},
+			        success: ajaxSuccess,
+			        error: ajaxFailure
+			    });
+		});
+		
+		function ajaxSuccess(data) {
+		    console.log('success data to POst');
+		}
+
+		function ajaxFailure(xhr, status, exception) {
+		    console.log(xhr, status, exception);
+		}
+	});
+	</script>
 </body>
 </html>

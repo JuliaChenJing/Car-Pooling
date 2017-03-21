@@ -8,6 +8,7 @@ public class Like {
 	private int postId;
 	private Date dateCreated;
 	private Date dateUpdated;
+	boolean isLiked;
 	
 	public Like() {
 	}
@@ -63,6 +64,18 @@ public class Like {
 				+ ", dateUpdated=" + dateUpdated + "]";
 	}
 
+	public void setlikeId(int likeID) {
+		// TODO Auto-generated method stub
+		this.likeId = likeID;
+	}
+
+	public boolean isLiked() {
+		return isLiked;
+	}
+
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
+	}
 	
 	
 }
