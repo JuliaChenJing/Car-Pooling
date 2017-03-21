@@ -23,6 +23,11 @@
 .media-body>.well {
 	margin-left: 206px;
 }
+.btn-default2 {
+    color: #ffffff;
+    background-color: #2cbfc8;
+    border-color: #2adce8;
+}
 
 b {
 	font-weight: 700;
@@ -267,6 +272,7 @@ b {
 			function ajaxSuccess(responseText) {
 				console.log('ajax success');
 				$("#ajaxSuccessReturn${post.postId}").text(responseText);
+				$(".likeButton${post.postId}").removeClass("glyphicon glyphicon-thumbs-up").addClass("glyphicon glyphicon-ok");
 			}
 
 			function ajaxFailure(xhr, status, exception) {
