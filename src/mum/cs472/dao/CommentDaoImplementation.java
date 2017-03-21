@@ -26,16 +26,15 @@ public class CommentDaoImplementation implements CommentDao {
 	public void addComment(Comment Comment) {
 	
 		try {
-			String insertQuery = "INSERT INTO Comments (userid,postid, commentid,comment, datecreated,dateupdated)"
-					+ "VALUES (?,?,?,?,?,?,?)";
+			String insertQuery = "INSERT INTO comments (userid, postid,comment, datecreated,dateupdated)"
+					+ "VALUES (?,?,?,?,?)";
 			preparedStatement = (PreparedStatement) conn.prepareStatement(insertQuery);
 
 			preparedStatement.setInt(1, Comment.getUserId());
-			preparedStatement.setInt(2, Comment.getCommentId());
-			preparedStatement.setInt(3, Comment.getPostId());
-			preparedStatement.setString(4, Comment.getComment());
-			preparedStatement.setDate(5, (Date)Comment.getDateCreated());
-			preparedStatement.setDate(6, (Date)Comment.getDateUpdated());
+			preparedStatement.setInt(2, Comment.getPostId());
+			preparedStatement.setString(3, Comment.getComment());
+			preparedStatement.setDate(4, (Date)Comment.getDateCreated());
+			preparedStatement.setDate(5, (Date)Comment.getDateUpdated());
 			
 			preparedStatement.executeUpdate();
 			
