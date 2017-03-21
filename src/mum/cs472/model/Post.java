@@ -8,18 +8,45 @@ public class Post {
 	private int userId;
 	private String post;
 	private int postType;
+	private String cityFrom;
+	private String cityTo;
 	private Date dateCreated;
 	private Date dateUpdated;
-	
+	private String username;
+
 	public Post() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Post(String post, int postType, Date dateCreated, Date dateUpdated) {
+	public Post(String post, int postType, String cityFrom, String cityTo) {
 		this.post = post;
 		this.postType = postType;
-		this.dateCreated = dateCreated;
-		this.dateUpdated = dateUpdated;
+		this.cityFrom = cityFrom;
+		this.cityTo = cityTo;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getCityFrom() {
+		return cityFrom;
+	}
+
+	public void setCityFrom(String cityFrom) {
+		this.cityFrom = cityFrom;
+	}
+
+	public String getCityTo() {
+		return cityTo;
+	}
+
+	public void setCityTo(String cityTo) {
+		this.cityTo = cityTo;
 	}
 
 	public int getPostId() {
@@ -75,6 +102,5 @@ public class Post {
 		return "Post [postId=" + postId + ", userId=" + userId + ", post=" + post + ", postType=" + postType
 				+ ", dateCreated=" + dateCreated + ", dateUpdated=" + dateUpdated + "]";
 	}
-	
-	
+
 }
