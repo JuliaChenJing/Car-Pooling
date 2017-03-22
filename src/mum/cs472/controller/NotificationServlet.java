@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import mum.cs472.service.PostService;
 import mum.cs472.service.PostServiceImplementation;
 
-@WebServlet("/")
+@WebServlet("/notification")
 public class NotificationServlet extends HttpServlet {
 	/**
 	 * 
