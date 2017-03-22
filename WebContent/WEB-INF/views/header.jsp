@@ -39,10 +39,7 @@ function GetNotification() {
 }
 $(document).ready(function() {
 		window.setTimeout(GetNotification,2000);
-	 	$("#messageButton1").click(function(){
-	 		window.location.replace("profile");
-	 		//console.log("------------------->reply button clicked");
-	 	})
+	 	
 });
 	 	
 </script>
