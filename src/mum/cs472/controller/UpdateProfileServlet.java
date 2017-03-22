@@ -15,14 +15,31 @@ import mum.cs472.service.UserService;
 
 @WebServlet("/updateProfile")
 public class UpdateProfileServlet extends HttpServlet {
+	public UpdateProfileServlet(UserService userService) {
+		super();
+		this.userService = userService;
+	}
+
+
 	private static final long serialVersionUID = 1L;
 	
 	private UserService userService;
+	public UpdateProfileServlet(){
+		
+		
+	}
        
-   
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int loggedInUserId =  Integer.parseInt(request.getParameter("loggedInUserId"));
+		System.out.println(loggedInUserId);
+		
+		request.setAttribute("loggedInUserId", loggedInUserId);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/UpdateProfile.jsp");
 		dispatcher.forward(request, response);
+		
+		
 	}
 
 

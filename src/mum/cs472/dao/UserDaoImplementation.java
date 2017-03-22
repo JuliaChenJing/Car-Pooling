@@ -54,9 +54,31 @@ public class UserDaoImplementation implements UserDao {
 
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
+		 try {
+			 
+	          
+	            String query = "update user set fullname=?, gender=?, state=?, city=?, street=?,  zipcode=?, birthyear=?,  email=?,  password=?, datecreated=?, dateupdated =? where userId=?";
+	            preparedStatement =(PreparedStatement)  conn.prepareStatement( query );
+	            preparedStatement.setString(1, user.getFullname());
+				preparedStatement.setInt(2, user.getGender());
+				preparedStatement.setString(3, user.getState());
+				preparedStatement.setString(4, user.getCity());
+				preparedStatement.setString(5, user.getStreet());
+				preparedStatement.setInt(6, user.getZipcode());
+				preparedStatement.setInt(7, user.getBirthyear());
+				preparedStatement.setString(8, user.getEmail());
+				preparedStatement.setString(9, user.getPassword());
+				preparedStatement.setDate(10, (Date) user.getDateCreated());
+				preparedStatement.setDate(11, (Date) user.getDateUpdated());
+	            preparedStatement.executeUpdate();
+	            preparedStatement.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
 
 	}
+	
+	
 
 	@Override
 	public List<User> getAllUsers() {
@@ -65,10 +87,34 @@ public class UserDaoImplementation implements UserDao {
 	}
 
 	@Override
-	public User getUserById(int userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public User getUserById(int userId) {
+        User user = new User();
+        try {
+            String query = "select * from user where userId=?";
+            preparedStatement = (PreparedStatement) conn.prepareStatement( query );
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while( resultSet.next() ) {
+                user.setFullname( resultSet.getString( "fullname" ) );
+                user.setGender(resultSet.getInt( "gender" ) );
+                user.setState(resultSet.getString( "state" ) );
+                user.setCity(resultSet.getString( "city" ) );
+                user.setStreet(resultSet.getString( "street" ) );
+                user.setZipcode(resultSet.getInt( "zipcode" ) );
+                user.setBirthyear(resultSet.getInt( "birthyear" ) );
+                user.setEmail(resultSet.getString( "email" ) );
+                user.setPassword(resultSet.getString( "password" ) );
+                user.setDateCreated(resultSet.getDate( "dateCreated" ) );
+                user.setDateUpdated(resultSet.getDate( "dateupdated" ) );
+     
+            }
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 
 	@Override
 	public String findFullNameByEmail(String email) {

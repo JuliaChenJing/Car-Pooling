@@ -25,7 +25,7 @@
 
 									<label class="col-lg-2 control-label">Full Name</label>
 									<div class="col-lg-10">
-										<input type="text" name="fullname" class="form-control"
+										<input type="text" name="fullname" class="form-control" value=${user.fullname}
 											placeholder="Enter Full name"
 											pattern="^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"
 											title=" username is 8-20 characters long ">
