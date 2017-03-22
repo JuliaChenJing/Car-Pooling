@@ -60,7 +60,7 @@ b {
 						<h4 class="media-heading text-uppercase reviews">${post.username}</h4>
 						<ul class="media-date text-uppercase reviews list-inline">
 							<li class="dd">${post.dateUpdated}</li>
-							<br />
+							<br	/>
 							<li class="dd">${post.cityFrom}<a>to</a> ${post.cityTo}
 							</li>
 						</ul>
@@ -85,22 +85,23 @@ b {
 							</a>
 
 							<!-- COMMENTS--BUTTON--------- -->
-							<%-- <a class="replyButton${post.postId} btn btn-warning btn-circle text-uppercase" 
+							<a class="commentShowButton${post.postId} btn btn-warning btn-circle text-uppercase" 
 								data-toggle="collapse"> <span
-								class="glyphicon glyphicon-comment"></span> 2 comments
-							</a> --%>
+								class="glyphicon glyphicon-comment"></span> <em id="commentCount${post.postId}">0</em> new comments
+							</a> 
 						</p>
 
 						<p id="ajaxSuccessReturn${post.postId}"></p>
 						<p id="ajaxSuccessReplyBox${post.postId}"></p>
-						<p id="ajaxSuccessShowComment${post.postId}"></p>
+						<p class="ajaxshowComments${post.postId}"></p>
+						
 					</div>
 
 				</div>
 			</div>
 			<script
 				src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-			<%@include file="AjaxProfile.jsp"%>
+			<%@include file="AjaxProfile.jsp"%>	
 		</c:forEach>
 
 	</div>

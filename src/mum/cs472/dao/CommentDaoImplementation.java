@@ -10,6 +10,7 @@ import java.util.List;
 import com.mysql.jdbc.PreparedStatement;
 
 import mum.cs472.model.Comment;
+import mum.cs472.model.Like;
 import mum.cs472.util.DBUtil;
 
 public class CommentDaoImplementation implements CommentDao {
@@ -57,7 +58,7 @@ public class CommentDaoImplementation implements CommentDao {
 	public List<Comment> getAllComments() {
 		List<Comment> Comments = new ArrayList<Comment>();
         try {
-        	String Query = "SELECT Comments.*,users.fullname FROM Comments RIGHT JOIN users ON Comments.userid = users.userid ORDER BY Comments.dateupdated desc;";
+        	String Query = "SELECT comments.*,users.fullname FROM comments RIGHT JOIN users ON comments.userid = users.userid ORDER BY comments.dateupdated desc;";
         	preparedStatement = (PreparedStatement) conn.prepareStatement(Query);
         	ResultSet resultSet = preparedStatement.executeQuery();
         	
@@ -107,6 +108,36 @@ public class CommentDaoImplementation implements CommentDao {
 	            e.printStackTrace();
 	        }
 		return username;
+	}
+
+
+	@Override
+	public List<Comment> getAllComments(int postId, int userId) {
+		List<Comment> commentList = new ArrayList<>(); 
+		try {
+			String query = "SELECT comments.*,users.fullname FROM comments JOIN users ON comments.userid = ? AND comments.postid = ? ORDER BY comments.dateupdated desc;";
+			preparedStatement = (PreparedStatement) conn.prepareStatement(query);
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, postId);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+        	
+            while (resultSet.next()) {
+               Comment comment = new Comment();
+               	comment.setUserId(resultSet.getInt("userid"));
+               	comment.setPostId(resultSet.getInt("postid"));
+                comment.setCommentId(resultSet.getInt("commentid"));
+				comment.setComment(resultSet.getString("comment"));
+                comment.setUsername(resultSet.getString("fullname"));
+                commentList.add(comment);
+            }
+			preparedStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return commentList;
 	}
 
 }
