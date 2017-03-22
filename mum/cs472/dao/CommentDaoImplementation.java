@@ -115,10 +115,10 @@ public class CommentDaoImplementation implements CommentDao {
 	public List<Comment> getAllComments(int postId, int userId) {
 		List<Comment> commentList = new ArrayList<>(); 
 		try {
-			String query = "SELECT comments.*,users.fullname FROM comments JOIN users ON comments.userid = ? AND comments.postid = ? ORDER BY comments.dateupdated desc;";
+			String query = "SELECT comments.*,users.fullname FROM comments RIGHT JOIN users ON users.userid = comments.userid WHERE comments.postid = ? ORDER BY comments.dateupdated desc;";
 			preparedStatement = (PreparedStatement) conn.prepareStatement(query);
-			preparedStatement.setInt(1, userId);
-			preparedStatement.setInt(2, postId);
+//			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(1, postId);
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
         	
