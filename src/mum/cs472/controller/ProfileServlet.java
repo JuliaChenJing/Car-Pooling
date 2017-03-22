@@ -45,7 +45,7 @@ public class ProfileServlet extends HttpServlet {
 		
 	}
 
-	
+	//shows all post in profile.jsp
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -55,17 +55,8 @@ public class ProfileServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/profile.jsp");
 		User user = userService.getUserByEmail(email);
 		session.setAttribute("user", user);
-
-		// if (request.getAttribute("action") != null) {
-		// String action = (String)request.getAttribute("action");
-		// if (action.equals("posts")) {
 		List<Post> postList = postService.getAllPosts();
 		request.setAttribute("postList", postList);
-		// request.setAttribute("fullNameOfUser",
-		// postService.getUsernameByPostId(postId));
-		// }
-		// }
-		
 		dispatcher.forward(request, response);
 	}
 

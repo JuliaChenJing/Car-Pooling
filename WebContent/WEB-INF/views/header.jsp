@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <header class="main-header">
@@ -14,7 +13,7 @@
 		</ul>
 		
 		<ul class="nav navbar-nav navbar-right">
-			<li><a class="navbar-brand"><span class="glyphicon glyphicon-user"></span>${user.fullname}</a></li>
+			<li><a  href="<%=request.getContextPath()%>/updateProfile" class="navbar-brand"><span class="glyphicon glyphicon-user"></span>${user.fullname}</a></li>
 			 <li><a href="#"  id="messageButton">Messages <span class="badge">3</span></a></li>
 			<li><a href="<%=request.getContextPath()%>/logout"
 				class="navbar-brand"> <span class="glyphicon glyphicon-off"></span> Logout </a></li>
