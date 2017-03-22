@@ -10,19 +10,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import mum.cs472.dao.UserDao;
+import mum.cs472.dao.UserDaoImplementation;
 import mum.cs472.model.User;
 import mum.cs472.service.UserService;
 
 @WebServlet("/updateProfile")
 public class UpdateProfileServlet extends HttpServlet {
+	
+	public UpdateProfileServlet(UserService userService) {
+		super();
+		this.userService = userService;
+	}
+
+	UserDaoImplementation userdao=new UserDaoImplementation();
+
 	private static final long serialVersionUID = 1L;
 	
 	private UserService userService;
+	public UpdateProfileServlet(){
+		
+	}
        
-   
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int loggedInUserId =  Integer.parseInt(request.getParameter("id"));
+		System.out.println(loggedInUserId);
+		
+		User user=userdao.getUserById(loggedInUserId);
+	
+		request.setAttribute("user", user);
+		System.out.println(user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/UpdateProfile.jsp");
 		dispatcher.forward(request, response);
+		
+		
 	}
 
 
@@ -49,6 +71,9 @@ public class UpdateProfileServlet extends HttpServlet {
 		} else {
 			user.setUserId(Integer.parseInt(userId));
 			userService.updateUser(user);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("profile");
+			session.setAttribute("email", request.getParameter("email"));
+			dispatcher.include(request, response);
 		}
 
 	}

@@ -13,7 +13,8 @@
 		</ul>
 		
 		<ul class="nav navbar-nav navbar-right">
-			<li><a  href="<%=request.getContextPath()%>/updateProfile" class="navbar-brand"><span class="glyphicon glyphicon-user"></span>${user.fullname}</a></li>
+
+			<li><a  href="<%=request.getContextPath()%>/updateProfile?id=1" class="navbar-brand"><span class="glyphicon glyphicon-user"></span>${user.fullname}</a></li>
 			 <li><a href="profile"  id="messageButton">Messages <span id="messageNumer" class="badge">0</span></a></li>
 			<li><a href="<%=request.getContextPath()%>/logout"
 				class="navbar-brand"> <span class="glyphicon glyphicon-off"></span> Logout </a></li>
