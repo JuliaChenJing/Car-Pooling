@@ -39,14 +39,9 @@ b {
 <!-- weather include file -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8"></script>
 	<script src="weatherMap.js"></script>
+	<script src="directionMap.js"></script>
 	<link rel="stylesheet" type="text/css" href="weatherMap.css"/>
-	<script>
-	  function displyMap(cityName,stateName){		  
-		  displayWeatherMapWindow($("[name='"+cityName+"']").val()
-				  +','+$("[name='"+stateName+"']").val()
-				  );
-	  }
-	</script>
+
 <!-- weather include file end -->
 </head>
 <body>
@@ -90,6 +85,8 @@ b {
 								data-toggle="collapse"> <span
 								class="glyphicon glyphicon-comment"></span> 2 comments
 							</a> --%>
+							<!--display route map--BUTTON-------- -->
+							<button type="button" onclick="displayDirectionMapWindow('${post.cityFrom}','${post.cityTo}')" class="btn btn-info">Route</button>
 						</p>
 
 						<p id="ajaxSuccessReturn${post.postId}"></p>
