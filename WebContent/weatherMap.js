@@ -1,4 +1,8 @@
-
+function displyMap(cityName,stateName){		  
+		  displayWeatherMapWindow($("[name='"+cityName+"']").val()
+				  +','+$("[name='"+stateName+"']").val()
+				  );
+	  }
 function closeWeatherMapWindow(){
   $('#weatherMapPopupWindow').remove();
 }

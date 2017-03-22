@@ -42,30 +42,23 @@ public class ProfileServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		doPost(request, response);
 	}
 
-	
+	//shows all post in profile.jsp
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
 		String email = (String) request.getParameter("email");
+		//update postCount for session
+		session.setAttribute("postCount", new Integer(PostServlet.getPostCount()));
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/profile.jsp");
 		User user = userService.getUserByEmail(email);
 		session.setAttribute("user", user);
-
-		// if (request.getAttribute("action") != null) {
-		// String action = (String)request.getAttribute("action");
-		// if (action.equals("posts")) {
 		List<Post> postList = postService.getAllPosts();
 		request.setAttribute("postList", postList);
-		// request.setAttribute("fullNameOfUser",
-		// postService.getUsernameByPostId(postId));
-		// }
-		// }
-		
 		dispatcher.forward(request, response);
 	}
 

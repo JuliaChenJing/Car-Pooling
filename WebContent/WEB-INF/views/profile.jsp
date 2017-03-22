@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User Profile</title>
+<link href="car.jpg"  type="image/jpg" rel="shortcut icon"/>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" />
 <style>
@@ -38,14 +39,9 @@ b {
 <!-- weather include file -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8"></script>
 	<script src="weatherMap.js"></script>
+	<script src="directionMap.js"></script>
 	<link rel="stylesheet" type="text/css" href="weatherMap.css"/>
-	<script>
-	  function displyMap(cityName,stateName){		  
-		  displayWeatherMapWindow($("[name='"+cityName+"']").val()
-				  +','+$("[name='"+stateName+"']").val()
-				  );
-	  }
-	</script>
+
 <!-- weather include file end -->
 </head>
 <body>
@@ -86,9 +82,13 @@ b {
 
 							<!-- COMMENTS--BUTTON--------- -->
 							<a class="commentShowButton${post.postId} btn btn-warning btn-circle text-uppercase" 
-								data-toggle="collapse"> <span
-								class="glyphicon glyphicon-comment"></span> <em id="commentCount${post.postId}">0</em> new comments
+
+								data-toggle="collapse"> <span class="glyphicon glyphicon-comment"></span> <em id="commentCount${post.postId}">0</em> new comments
 							</a> 
+
+							<!--display route map--BUTTON-------- -->
+							<button type="button" onclick="displayDirectionMapWindow('${post.cityFrom}','${post.cityTo}')" class="btn btn-info">Route</button>
+
 						</p>
 
 						<p id="ajaxSuccessReturn${post.postId}"></p>
