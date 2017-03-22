@@ -17,6 +17,10 @@ import mum.cs472.service.PostServiceImplementation;
 @WebServlet("/post")
 public class PostServlet extends HttpServlet{
 
+	private static int postCount=0;
+	public static int getPostCount() {
+		return postCount;
+	}
 	PostService postService;
 	public PostServlet() {
 		postService = new PostServiceImplementation();
@@ -48,7 +52,9 @@ public class PostServlet extends HttpServlet{
 			session.setAttribute("email", request.getParameter("email"));
 			request.setAttribute("postId", postId);
 			request.setAttribute("action", "posts");
+			++postCount;
 			dispatcher.forward(request, response);
+			
 		} else {
 			post.setPostId(Integer.parseInt(postId));
 			postService.updatePost(post);

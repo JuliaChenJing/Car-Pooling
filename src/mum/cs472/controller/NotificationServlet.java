@@ -8,11 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import mum.cs472.service.PostService;
 import mum.cs472.service.PostServiceImplementation;
 
-@WebServlet("/notification")
+@WebServlet("/")
 public class NotificationServlet extends HttpServlet {
 	/**
 	 * 
@@ -26,11 +27,13 @@ public class NotificationServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+		HttpSession session = request.getSession();
+		Integer sessionPostCount=(Integer)session.getAttribute("postCount");
+		int ret=0;
+		if(sessionPostCount!=null)
+			ret=PostServlet.getPostCount()-sessionPostCount;
+		response.setContentType("application/text");
+		response.getWriter().print(ret);;
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		
-	}
+	
 }

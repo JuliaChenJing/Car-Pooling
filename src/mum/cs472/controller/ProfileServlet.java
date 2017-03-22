@@ -42,7 +42,7 @@ public class ProfileServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		doPost(request, response);
 	}
 
 	//shows all post in profile.jsp
@@ -51,6 +51,8 @@ public class ProfileServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String email = (String) request.getParameter("email");
+		//update postCount for session
+		session.setAttribute("postCount", new Integer(PostServlet.getPostCount()));
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/profile.jsp");
 		User user = userService.getUserByEmail(email);

@@ -14,7 +14,7 @@
 		
 		<ul class="nav navbar-nav navbar-right">
 			<li><a  href="<%=request.getContextPath()%>/updateProfile" class="navbar-brand"><span class="glyphicon glyphicon-user"></span>${user.fullname}</a></li>
-			 <li><a href="#"  id="messageButton">Messages <span class="badge">3</span></a></li>
+			 <li><a href="profile"  id="messageButton">Messages <span id="messageNumer" class="badge">0</span></a></li>
 			<li><a href="<%=request.getContextPath()%>/logout"
 				class="navbar-brand"> <span class="glyphicon glyphicon-off"></span> Logout </a></li>
 		</ul>
@@ -22,12 +22,24 @@
 </header>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
+function GetNotification() {
+	console.log("call setInterval");
+	$.ajax({
+		"url": "notification",
+		"type": "GET",
+		"success": function(data){
+			console.log(data);
+	        $("#messageNumer").text(data);
+	        window.setTimeout(GetNotification,2000);
+	    },
+		"error": function(xhr, status, exception) {
+			console.log(xhr, status, exception);
+		}
+	});
+}
 $(document).ready(function() {
-	 	$("#messageButton").click(function() 
-	 			{
-	 		console.log("------------------->reply button clicked");
-	 			}
-	 	)
+		window.setTimeout(GetNotification,2000);
+	 	
 });
 	 	
 </script>
