@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User Profile</title>
+<link href="car.jpg"  type="image/jpg" rel="shortcut icon"/>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" />
 <style>
