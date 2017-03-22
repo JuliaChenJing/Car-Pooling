@@ -23,10 +23,11 @@
 .media-body>.well {
 	margin-left: 206px;
 }
+
 .btn-default2 {
-    color: #ffffff;
-    background-color: #2cbfc8;
-    border-color: #2adce8;
+	color: #ffffff;
+	background-color: #2cbfc8;
+	border-color: #2adce8;
 }
 
 b {
@@ -34,178 +35,23 @@ b {
 	font-size: 20px;
 }
 </style>
+<!-- weather include file -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8"></script>
+	<script src="weatherMap.js"></script>
+	<link rel="stylesheet" type="text/css" href="weatherMap.css"/>
+	<script>
+	  function displyMap(cityName,stateName){		  
+		  displayWeatherMapWindow($("[name='"+cityName+"']").val()
+				  +','+$("[name='"+stateName+"']").val()
+				  );
+	  }
+	</script>
+<!-- weather include file end -->
 </head>
 <body>
 	<%@include file="header.jsp"%>
 	<div class="container">
-		<form class="form-horizontal" role="form" method="post" action="post">
-
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Post Type</label>
-				<div class="col-lg-10">
-					<div class="radio">
-						<label> <input type="radio" name="postType" value="1"
-							checked> Offer Ride
-						</label> <label> <input type="radio" name="postType" value="2">
-							Ask Ride
-						</label>
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="select" class="col-lg-2 control-label">From</label>
-				<div class="col-lg-2">
-					<select class="form-control" id="select" name="stateFrom">
-						<option value="AL">Alabama</option>
-						<option value="AK">Alaska</option>
-						<option value="AZ">Arizona</option>
-						<option value="AR">Arkansas</option>
-						<option value="CA">California</option>
-						<option value="CO">Colorado</option>
-						<option value="CT">Connecticut</option>
-						<option value="DE">Delaware</option>
-						<option value="DC">District of Columbia</option>
-						<option value="FL">Florida</option>
-						<option value="GA">Georgia</option>
-						<option value="HI">Hawaii</option>
-						<option value="ID">Idaho</option>
-						<option value="IL">Illinois</option>
-						<option value="IN">Indiana</option>
-						<option value="IA" selected>Iowa</option>
-						<option value="KS">Kansas</option>
-						<option value="KY">Kentucky</option>
-						<option value="LA">Louisiana</option>
-						<option value="ME">Maine</option>
-						<option value="MD">Maryland</option>
-						<option value="MA">Massachusetts</option>
-						<option value="MI">Michigan</option>
-						<option value="MN">Minnesota</option>
-						<option value="MS">Mississippi</option>
-						<option value="MO">Missouri</option>
-						<option value="MT">Montana</option>
-						<option value="NE">Nebraska</option>
-						<option value="NV">Nevada</option>
-						<option value="NH">New Hampshire</option>
-						<option value="NJ">New Jersey</option>
-						<option value="NM">New Mexico</option>
-						<option value="NY">New York</option>
-						<option value="NC">North Carolina</option>
-						<option value="ND">North Dakota</option>
-						<option value="OH">Ohio</option>
-						<option value="OK">Oklahoma</option>
-						<option value="OR">Oregon</option>
-						<option value="PA">Pennsylvania</option>
-						<option value="RI">Rhode Island</option>
-						<option value="SC">South Carolina</option>
-						<option value="SD">South Dakota</option>
-						<option value="TN">Tennessee</option>
-						<option value="TX">Texas</option>
-						<option value="UT">Utah</option>
-						<option value="VT">Vermont</option>
-						<option value="VA">Virginia</option>
-						<option value="WA">Washington</option>
-						<option value="WV">West Virginia</option>
-						<option value="WI">Wisconsin</option>
-						<option value="WY">Wyoming</option>
-					</select>
-				</div>
-
-				<div class="col-lg-2">
-					<input type="text" class="form-control" name="cityFrom"
-						placeholder="Enter city From">
-				</div>
-
-
-				<label for="select" class="col-lg-2 control-label">To</label>
-				<div class="col-lg-2">
-					<select class="form-control" id="select" name="stateTo">
-						<option value="AL">Alabama</option>
-						<option value="AK">Alaska</option>
-						<option value="AZ">Arizona</option>
-						<option value="AR">Arkansas</option>
-						<option value="CA">California</option>
-						<option value="CO">Colorado</option>
-						<option value="CT">Connecticut</option>
-						<option value="DE">Delaware</option>
-						<option value="DC">District of Columbia</option>
-						<option value="FL">Florida</option>
-						<option value="GA">Georgia</option>
-						<option value="HI">Hawaii</option>
-						<option value="ID">Idaho</option>
-						<option value="IL">Illinois</option>
-						<option value="IN">Indiana</option>
-						<option value="IA" selected>Iowa</option>
-						<option value="KS">Kansas</option>
-						<option value="KY">Kentucky</option>
-						<option value="LA">Louisiana</option>
-						<option value="ME">Maine</option>
-						<option value="MD">Maryland</option>
-						<option value="MA">Massachusetts</option>
-						<option value="MI">Michigan</option>
-						<option value="MN">Minnesota</option>
-						<option value="MS">Mississippi</option>
-						<option value="MO">Missouri</option>
-						<option value="MT">Montana</option>
-						<option value="NE">Nebraska</option>
-						<option value="NV">Nevada</option>
-						<option value="NH">New Hampshire</option>
-						<option value="NJ">New Jersey</option>
-						<option value="NM">New Mexico</option>
-						<option value="NY">New York</option>
-						<option value="NC">North Carolina</option>
-						<option value="ND">North Dakota</option>
-						<option value="OH">Ohio</option>
-						<option value="OK">Oklahoma</option>
-						<option value="OR">Oregon</option>
-						<option value="PA">Pennsylvania</option>
-						<option value="RI">Rhode Island</option>
-						<option value="SC">South Carolina</option>
-						<option value="SD">South Dakota</option>
-						<option value="TN">Tennessee</option>
-						<option value="TX">Texas</option>
-						<option value="UT">Utah</option>
-						<option value="VT">Vermont</option>
-						<option value="VA">Virginia</option>
-						<option value="WA">Washington</option>
-						<option value="WV">West Virginia</option>
-						<option value="WI">Wisconsin</option>
-						<option value="WY">Wyoming</option>
-					</select>
-				</div>
-				<div class="col-lg-2">
-					<input type="text" class="form-control" name="cityTo"
-						placeholder="Enter city To">
-				</div>
-
-			</div>
-
-
-			<!--show all the existing post---------- -->
-			<div class="form-group">
-				<label for="message" class="col-lg-2 control-label">Message</label>
-				<div class="col-lg-10">
-					<textarea class="form-control" rows="4" name="post"></textarea>
-				</div>
-			</div>
-			<input type="text" name="userIdHidden" id="loggedInUserId"
-				value="${user.userId}" hidden>
-
-			<input type="text" name="userIdHidden" id="userId"
-				value="${user.userId}" hidden> <input type="text"
-				name="email" value="${user.email}" hidden>
-
-			<div class="form-group">
-				<div class="col-lg-10 col-lg-offset-2">
-					<input id="submit" name="submit" type="submit" value="Post"
-						class="btn btn-primary">
-				</div>
-			</div>
-		</form>
-
-
-		<!-- add new post----------- -->
-
+		<%@include file="FormProfile.jsp"%>
 		<c:forEach var="post" items="${postList}">
 
 			<div class="row">
@@ -218,149 +64,43 @@ b {
 							<li class="dd">${post.cityFrom}<a>to</a> ${post.cityTo}
 							</li>
 						</ul>
-						<input type="text" id="postId${post.postId}" value="${post.postId}" hidden>
-						<input type="text" id="userIdInPost${post.userId}" value="${post.userId}" hidden>
-						
+						<input type="text" id="postId${post.postId}"
+							value="${post.postId}" hidden> <input type="text"
+							id="userIdInPost${post.userId}" value="${post.userId}" hidden>
+
 						<p class="media-comment">${post.post}</p>
-						
-						
+
+
 						<p>
-				        	<!-- LIKE-BUTTON--------- -->
-							<i class="likeButton${post.postId}"><a class="btn btn-default btn-circle-like">
-								<span class="glyphicon glyphicon-thumbs-up"> </span>
+							<!-- LIKE-BUTTON--------- -->
+							<i class="likeButton${post.postId}"><a
+								class="btn btn-default btn-circle-like"> <span
+									class="glyphicon glyphicon-thumbs-up"> </span>
 							</a></i>
-							
+
 							<!--REPLY--BUTTON-------- -->
-							<a class="replyButton${post.postId} btn btn-success btn-circle text-uppercase"   href="#">
+							<a
+								class="replyButton${post.postId} btn btn-success btn-circle text-uppercase">
 								<span class="glyphicon glyphicon-share-alt"></span>Reply
 							</a>
 
 							<!-- COMMENTS--BUTTON--------- -->
-							<a class="replyButton${post.postId} btn btn-warning btn-circle text-uppercase" 
-								data-toggle="collapse" href="#replyOne"> <span
+							<%-- <a class="replyButton${post.postId} btn btn-warning btn-circle text-uppercase" 
+								data-toggle="collapse"> <span
 								class="glyphicon glyphicon-comment"></span> 2 comments
-							</a>
+							</a> --%>
 						</p>
 
 						<p id="ajaxSuccessReturn${post.postId}"></p>
+						<p id="ajaxSuccessReplyBox${post.postId}"></p>
+						<p id="ajaxSuccessShowComment${post.postId}"></p>
 					</div>
 
 				</div>
 			</div>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script>
-	
-	
-	    //the action of the LIKE BUTTON
-		$(document).ready(function() {
-			
-			$(".likeButton${post.postId}").click(function() {
-				let postId = $('#postId${post.postId}').attr('value');
-				let userId = $('#userIdInPost${post.userId}').attr('value');
-				let loggedInUserId = $('#loggedInUserId').attr('value');
-				
-				console.log(userId);
-				console.log(postId);
-				console.log(loggedInUserId);
-				
-				$.ajax({
-					url : "like",
-					type : "POST",
-					data : {
-						'userId' : userId,
-						'postId' : postId,
-						'loggedInUserId': loggedInUserId
-					},
-					success : ajaxSuccess,
-					error : ajaxFailure
-				});
-			});
-
-			function ajaxSuccess(responseText) {
-				console.log('ajax success');
-				$("#ajaxSuccessReturn${post.postId}").text(responseText);
-				$(".likeButton${post.postId}").removeClass("glyphicon glyphicon-thumbs-up").addClass("glyphicon glyphicon-ok");
-			}
-
-			function ajaxFailure(xhr, status, exception) {
-				console.log(xhr, status, exception);
-			}
-		});
-	    
-	    
-		//the action of REPLY BUTTON, show a window to let user input their reply to the post
-		//when finish, show all the comments including the newest comment created by the user
-		$(document).ready(function() {
-			$(".replyButton${post.postId}").click(function() {
-				let postId = $('#postId${post.postId}').attr('value');
-				let userId = $('#userIdInPost${post.userId}').attr('value');
-				let loggedInUserId = $('#loggedInUserId').attr('value');
-				
-				console.log(userId);
-				console.log(postId);
-				console.log(loggedInUserId);
-				
-				$.ajax({
-					url : "comments",
-					type : "POST",
-					data : {
-						'userId' : userId,
-						'postId' : postId,
-						'loggedInUserId': loggedInUserId
-					},
-					success : ajaxSuccess,
-					error : ajaxFailure
-				});
-			});
-
-			function ajaxSuccess(responseText) {
-				console.log('ajax success');
-				$("#ajaxSuccessReturn${post.postId}").text(responseText);
-				$(".likeButton${post.postId}").removeClass("glyphicon glyphicon-thumbs-up").addClass("glyphicon glyphicon-ok");
-			}
-
-			function ajaxFailure(xhr, status, exception) {
-				console.log(xhr, status, exception);
-			}
-		});
-		
-		//the action of COMMENTS BUTTON, show the previous comments to this post
-		$(document).ready(function() {
-			$(".commentsButton${post.postId}").click(function() {
-				let postId = $('#postId${post.postId}').attr('value');
-				let userId = $('#userIdInPost${post.userId}').attr('value');
-				let loggedInUserId = $('#loggedInUserId').attr('value');
-				
-				console.log(userId);
-				console.log(postId);
-				console.log(loggedInUserId);
-				
-				$.ajax({
-					url : "comments",
-					type : "GET",
-					data : {
-						'userId' : userId,
-						'postId' : postId,
-						'loggedInUserId': loggedInUserId
-					},
-					success : ajaxSuccess,
-					error : ajaxFailure
-				});
-			});
-
-			function ajaxSuccess(responseText) {
-				console.log('ajax success');
-				$("#ajaxSuccessReturn${post.postId}").text(responseText);
-				$(".likeButton${post.postId}").removeClass("glyphicon glyphicon-thumbs-up").addClass("glyphicon glyphicon-ok");
-			}
-
-			function ajaxFailure(xhr, status, exception) {
-				console.log(xhr, status, exception);
-			}
-		});
-	    
-	    
-	</script>	
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+			<%@include file="AjaxProfile.jsp"%>
 		</c:forEach>
 
 	</div>
