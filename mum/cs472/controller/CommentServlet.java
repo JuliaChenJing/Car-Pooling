@@ -42,7 +42,6 @@ public class CommentServlet extends HttpServlet {
 		sb.append("<ul>");
 		int count = 0;
 		for(Comment comment : commentLists) {
-			System.out.println("----------");
 			sb.append("<li><b>"+comment.getUsername()+"</b> <i> commented as </i> :"+comment.getComment()+"</li>");
 			count++;
 		}

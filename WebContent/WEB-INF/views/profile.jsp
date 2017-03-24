@@ -87,7 +87,7 @@ b {
 							</a> 
 
 							<!--display route map--BUTTON-------- -->
-							<button type="button" onclick="displayDirectionMapWindow('${post.cityFrom}','${post.cityTo}')" class="btn btn-info">Route</button>
+							<button type="button" onclick="displayDirectionMapWindow('${post.cityFrom}','${post.cityTo}')" class="btn btn-success">Route</button>
 
 						</p>
 
